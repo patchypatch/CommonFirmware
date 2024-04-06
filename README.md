@@ -7,6 +7,9 @@ To my dismay, I found I didn't have the version of the manufacturer's IDE that s
 
 This project seeks to create a common low-level firmware that is not tied to any particular manufacturer. It uses Make and the Arm GNU compiler so is also portable between IDE's. Lower levels are written in C and some upper level drivers are written in C++ to benefit from object-oriented programming constructs.
 
+## Architecture Diagram
+![Common Firmware Architecture](/_doc/CommonFirmwareArch.PNG)
+
 ## Architecture Description
 Goals:
 1. Code which is dedicated to a particular manufacturer's chip is contained to a small section of the project
@@ -21,6 +24,3 @@ L2_System_Config level is the only portion to modify when switching to another m
 L3_Driver_Low is the only additional portion to modify when switching to another manufacturer's microcontroller
 
 L4_Driver_High is drivers for other chips (ex. sensors), NewLib support files and intermediary classes that the higher-level app code can call
-
-## Architecture Diagram
-![Common Firmware Architecture](/_doc/CommonFirmwareArch.PNG)
