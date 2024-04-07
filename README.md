@@ -1,5 +1,5 @@
 # Common Firmware
-Low-level firmware to be reused via git submodule in my projects.
+Low-level firmware reused via git submodule in my projects.
 
 ## Background
 Microcontrollers are affordable tools for implementing software in real-time, but each manufacturer has their own tool-chain. After graduating from engineering school, I went to my Cortex-M-based dev board. I wanted to develop microcontroller software in my free time to continue learning and to implement my ideas just for the sake of my creativity.
