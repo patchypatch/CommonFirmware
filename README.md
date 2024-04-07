@@ -18,10 +18,10 @@ Goals:
 3. Have a clear hierarchy which allows for tracing upper level functions to lower level microcontroller HAL access
 4. Utilize CMSIS HAL for microcontroller register access for clarity and for comparisons with examples in the literature
 
-L1_HW_HAL is simply the CMSIS HAL for the core and the manufacturer's peripherals without modification
+L1_HW_HAL is simply the CMSIS HAL for the core and the manufacturer's peripherals without modification.
 
-L2_System_Config level is the only portion to modify when switching to another microcontroller with the same manufacturer
+L2_System_Config level is the only portion to modify when switching to another microcontroller with the same manufacturer.
 
-L3_Driver_Low is the only additional portion to modify when switching to another manufacturer's microcontroller
+L3_Driver_Low is the only additional portion to modify when switching to another manufacturer's microcontroller.
 
-L4_Driver_High is drivers for other chips (ex. sensors), NewLib support files and intermediary classes that the higher-level app code can call
+L4_Driver_High is drivers for other chips (ex. sensors), NewLib support files and intermediary classes that the higher-level app code can call.
