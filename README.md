@@ -4,7 +4,7 @@ Low-level firmware reused as a dependency in my projects.
 ## Background
 Microcontrollers are affordable tools for implementing software in real-time, but each manufacturer has their own tool-chain. After graduating from engineering school, I went to my Cortex-M-based dev board. I wanted to develop microcontroller software in my free time to continue learning and to implement my ideas just for the sake of my creativity.
 
-To my dismay, I found I didn't have the version of the manufacturer's IDE that supported that board and could no longer download the old tools needed to program the board. Later, I found that the CMSIS peripheral HAL that I learned for that manufacturer did not match what other manufacturer's of Cortex-M microcontrollers use (each is different).
+To my dismay, I found I didn't have the version of the manufacturer's IDE that supported that board and could no longer download the old tools needed to program the board. Later, I found that the CMSIS peripheral HAL that I learned for that manufacturer did not match what other manufacturers of Cortex-M microcontrollers use (each is different).
 
 This project seeks to create a common low-level firmware that is not tied to any particular manufacturer. It uses Make and the Arm GNU compiler so is also portable between IDE's. Lower levels are written in C and some upper level drivers are written in C++ to benefit from object-oriented programming constructs.
 
