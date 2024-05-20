@@ -14,7 +14,7 @@ This project seeks to create a common low-level firmware that is not tied to any
 ## Architecture Description
 Goals:
 1. Code which is dedicated to a particular manufacturer's chip is contained to a small section of the project
-2. Drivers for other chips (ex. sensors) are separated so they do not directly use microcontroller's HAL
+2. Drivers for other chips (ex. sensors) are separated so they do not directly use the microcontroller's HAL
 3. Have a clear hierarchy which allows for tracing upper level functions to lower level microcontroller HAL access
 4. Utilize CMSIS HAL for microcontroller register access for clarity and for comparisons with examples in the literature
 
