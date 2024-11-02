@@ -1,6 +1,8 @@
 #include "sysclock.h"
 #include "stm32f4xx.h"
 
+#define SYS_TICK_CLOCK_DIVIDER 100000 // Fclk divided by 1000 to give an interrupt every ms
+
 void clock_init() {
 	/* By default HSI (16 MHz RC oscillator) is selected as system clock.
 	 * We want to use the HSE (25 MHz Osc on BlackPill)
@@ -20,7 +22,7 @@ void clock_init() {
 	// Enable HSE (external oscillator)
 	RCC->CR |= RCC_CR_HSEON_Msk;
 	while (!(RCC->CR & RCC_CR_HSERDY_Msk));
-  
+
 	// Configure PLL dividers and multiplier
 	/* Input to PLL should be 1-2 MHz (preferably 2 MHz). Choosing M=15 gives
 	 * us 25 MHz / 15 = 1.6667 MHz.
@@ -33,13 +35,13 @@ void clock_init() {
 	 */
 	// Clear PLLM, PLLN and PLLP bits
 	RCC->PLLCFGR &= ~(RCC_PLLCFGR_PLLM_Msk | RCC_PLLCFGR_PLLN_Msk | RCC_PLLCFGR_PLLP_Msk);
-  
+
 	// Set PLLM, PLLN and PLLP, and select HSE as PLL source
 	RCC->PLLCFGR |= ((15 << RCC_PLLCFGR_PLLM_Pos) | (240 << RCC_PLLCFGR_PLLN_Pos) | (1 << RCC_PLLCFGR_PLLP_Pos) | (1 << RCC_PLLCFGR_PLLSRC_Pos));
-  
+
 	// Set APB1 prescaler to 2
 	RCC->CFGR |= (0b100 << RCC_CFGR_PPRE1_Pos);
-  
+
 	// Enable PLL and wait for ready
 	RCC->CR |= RCC_CR_PLLON_Msk;
 	while (! (RCC->CR & RCC_CR_PLLRDY_Msk));
@@ -47,4 +49,9 @@ void clock_init() {
 	// Select PLL output as system clock
 	RCC->CFGR |= (RCC_CFGR_SW_PLL << RCC_CFGR_SW_Pos);
 	while (! (RCC->CFGR & RCC_CFGR_SWS_PLL));
+}
+
+void systick_init() {
+	/* Turn on SysTick interrupt */
+	SysTick_Config(SYS_TICK_CLOCK_DIVIDER);
 }

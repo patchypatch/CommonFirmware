@@ -3,9 +3,6 @@
 #include "exti.h"
 #include "tim.h"
 #include "nvic.h"
-#include "stm32f4xx.h" //move to lower layer
-
-#define SYS_TICK_CLOCK_DIVIDER 100000
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,10 +11,6 @@ extern "C" {
 typedef void(*FunctionPointer_t)(void);
 FunctionPointer_t pf_handlers_exti[16];
 FunctionPointer_t pf_handlers_tim[16];
-/* SysTick */
-void interrupt_init_systick(void) {
-	SysTick_Config(SYS_TICK_CLOCK_DIVIDER);
-}
 
 /* NVIC */
 void interrupt_mask_global(void) {

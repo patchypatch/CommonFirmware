@@ -4,8 +4,6 @@
 extern "C" {
 #endif /* __cplusplus */
 
-void interrupt_init_systick(void);
-
 void interrupt_mask_global(void);
 void interrupt_unmask_global(void);
 
