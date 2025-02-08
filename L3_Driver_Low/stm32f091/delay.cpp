@@ -8,7 +8,6 @@ volatile uint32_t ticks;
 
 void systick_handler() {
 	ticks++;
-	//printf("tick\n");
 }
 
 void delay_ms(uint32_t ms) {

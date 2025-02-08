@@ -38,7 +38,7 @@ void usart_init(uint8_t channel, char port, uint8_t pinTx, uint8_t pinRx, uint8_
 //  USART_array[channel]->BRR = (uint16_t) 0x1388; // 9600 baud @ 48 MHz APB (PCLK) clock and 16x oversampling
   USART_array[channel]->CR1 |= USART_CR1_UE | USART_CR1_TE; // USART enable and transmitter enable
 
-  // TEST Dummy write, because the first byte is dropped
+  // Dummy write, because the first byte is dropped
   USART_array[channel]->TDR = 'Z';
   while (!(USART_array[channel]->ISR & USART_ISR_TC)); // wait for transmission complete flag
 }

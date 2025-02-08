@@ -4,9 +4,10 @@
 extern "C" {
 #endif /* __cplusplus */
 
-void systick_handler() {
+volatile uint32_t ticks;
+
+void systick_handler(void) {
 	ticks++;
-	//printf("tick\n");
 }
 
 void delay_ms(uint32_t ms) {
@@ -16,7 +17,6 @@ void delay_ms(uint32_t ms) {
 	if (end < start) { // overflow
 		while (ticks > start); // busy wait for ticks to wrap
 	}
-
 	while (ticks < end); // busy wait for ticks to get to end
 }
 

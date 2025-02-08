@@ -32,6 +32,7 @@ void clock_init() {
 	 * 400 MHz / 4 = 100 MHz
 	 * 
 	 * Since APB1 clock must not be more than 50 MHz, set the PPRE1 divider to 2.
+	 * Since errata states that SPI may not work correctly at 100 MHz, use APB2 at 50 MHz. Set PPRE2 divider to 2.
 	 */
 	// Clear PLLM, PLLN and PLLP bits
 	RCC->PLLCFGR &= ~(RCC_PLLCFGR_PLLM_Msk | RCC_PLLCFGR_PLLN_Msk | RCC_PLLCFGR_PLLP_Msk);
@@ -39,8 +40,9 @@ void clock_init() {
 	// Set PLLM, PLLN and PLLP, and select HSE as PLL source
 	RCC->PLLCFGR |= ((15 << RCC_PLLCFGR_PLLM_Pos) | (240 << RCC_PLLCFGR_PLLN_Pos) | (1 << RCC_PLLCFGR_PLLP_Pos) | (1 << RCC_PLLCFGR_PLLSRC_Pos));
 
-	// Set APB1 prescaler to 2
+	// Set APB prescalers to 2
 	RCC->CFGR |= (0b100 << RCC_CFGR_PPRE1_Pos);
+	RCC->CFGR |= (0b100 << RCC_CFGR_PPRE2_Pos);
 
 	// Enable PLL and wait for ready
 	RCC->CR |= RCC_CR_PLLON_Msk;

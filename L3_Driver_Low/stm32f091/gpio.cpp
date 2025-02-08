@@ -51,7 +51,6 @@ void gpio_enable(char port, uint8_t pin, bool isOutput, bool isPullUp, bool isPu
 //		*modeRegister |= ( 0b01UL << pinShift );
 //	} else {
 //		*modeRegister &= ~( 0b11UL << pinShift ); // clear mode bits
-//		//for(;;) printf("modeRegister = 0x%8x\nmodeRegisterValue = 0x%8x\n", modeRegister, *modeRegister);
 //	}
 
 //	/* Configure Pull Up/Dn Resistor */

@@ -119,7 +119,7 @@ int main(void);
 void __libc_init_array();
 
 void reset_handler(void) {
-  // Copy .data from FLASH to SRAM
+  /* Copy .data from FLASH to SRAM */
   uint32_t data_size = (uint32_t)&_edata - (uint32_t)&_sdata;
   uint8_t *flash_data = (uint8_t*) &_sidata; // Data load address (in flash)
   uint8_t *sram_data = (uint8_t*) &_sdata; // Data virtual address (in sram)
@@ -129,7 +129,7 @@ void reset_handler(void) {
     sram_data[i] = flash_data[i];
   }
 
-  // Zero-fill .bss section in SRAM
+  /* Zero-fill .bss section in SRAM */
   uint32_t bss_size = (uint32_t)&_ebss - (uint32_t)&_sbss;
   uint8_t *bss = (uint8_t*) &_sbss;
 
@@ -138,17 +138,17 @@ void reset_handler(void) {
     bss[i] = 0;
   }
   
-  // Init newlib c library
+  /* Init newlib c library */
   __libc_init_array();
   
-  // Configure system clock
+  /* Configure system clock */
   clock_init();
   SystemCoreClockUpdate(); // Update the internal clock frequency variable
 
-  // Turn on systick interrupt
+  /* Turn on systick interrupt */
   systick_init();
 
-  // Call main program
+  /* Call main program */
   main();
 }
 
